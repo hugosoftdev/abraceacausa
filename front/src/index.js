@@ -1,18 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Home, Campaigns } from './pages';
+import { Home, Campaigns, Entities } from './pages';
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { ThemeProvider } from '@material-ui/styles';
 
-import './index.css';
+import theme from './styles/theme';
+
+import './styles/index.css';
+
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <Router>
-    <Route path="/" exact component={Home} />
-    <Route path="/campaigns" component={Campaigns} />
-  </Router>,
+  <ThemeProvider theme={theme}>
+    <Router>
+      <Route path="/" component={Home} />
+      <Route path="/campaigns" component={Campaigns} />
+      <Route path="/entities/:id" component={Entities} />
+    </Router>
+  </ThemeProvider>,
   document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

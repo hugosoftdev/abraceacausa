@@ -1,9 +1,11 @@
 import React from 'react';
-import Header from '../components/Header';
+import AppBar from '@material-ui/core/AppBar';
+
 
 function Home() {
   return (
-    <Header />
+    <AppBar>
+    </AppBar>
   );
 }
 
