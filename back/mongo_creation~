@@ -1,0 +1,5 @@
+use abraceacausa;
+db.createCollection("campaigns");
+
+
+

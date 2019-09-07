@@ -1,0 +1,26 @@
+use abraceacausa;
+db.createCollection("campaigns");
+db.createCollection("campaigns_needs");
+db.createCollection("needs")
+db.createCollection("entities")
+db.createCollection("entity_campaign")
+db.campaigns.insertMany([
+   { name: "Brumadinho", Description: "Desastre ambiental ...", Location: (20.1515,44.2011), gravity: 10, id: 0 },
+   { name: "Inundamento Tiete", Description: "Rio Tiete subiu o nivel e deixou centenas de casas alagadas", Location: (-23,4983,-46,3347), gravity: 6, id:1 },
+   { name: "Paraisópolis Inverno", Description: "Arrecadar roupas para moradores", Location: (23.6146,46.7263), gravity: 3, id: 2 }
+])
+
+db.needs.insertMany([
+    { id:0, name: "Arroz", type: "Perecível", Desired: 400, current: 20, campaign_id: 0},
+    { id:1, name: "Coberta", type: "Não Perecível", Desired: 10, current: 2, campaign_id: 1},
+    { id:2, name: "Coberta", type: "Não Perecível", Desired: 100, current: 70, campaign_id: 2}
+])
+
+db.entities.insertMany([
+    { id:0, name: "Casa De Doações", Location: (50,50), Description: "Gosto de ajudar pessoas, me entreguem o que o coração mandar"},
+    { id:1, name: "ONG Anjo Amigo", Location: (10,30), Description: "Arrecadamos comida"},
+    { id:2, name: "Casa Voluntária", Location:(20,20), Description: "Voluntario para centralizar recursos"}
+])
+
+
+
