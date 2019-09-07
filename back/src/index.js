@@ -5,6 +5,7 @@ import express from 'express';
 
 import models from './models';
 import routes from './routes';
+import {startConnection} from './DBManager/connection';
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use((req, res, next) => {
 app.use('/session', routes.session);
 app.use('/users', routes.user);
 app.use('/messages', routes.message);
+app.use('/campaigns', routes.campaigns);
 
 // Start
 

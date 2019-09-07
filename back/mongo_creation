@@ -1,6 +1,5 @@
 use abraceacausa;
 db.createCollection("campaigns");
-db.createCollection("campaigns_needs");
 db.createCollection("needs")
 db.createCollection("entities")
 db.createCollection("entity_campaign")
@@ -11,9 +10,9 @@ db.campaigns.insertMany([
 ])
 
 db.needs.insertMany([
-    { id:0, name: "Arroz", type: "Perecível", Desired: 400, current: 20, campaign_id: 0},
-    { id:1, name: "Coberta", type: "Não Perecível", Desired: 10, current: 2, campaign_id: 1},
-    { id:2, name: "Coberta", type: "Não Perecível", Desired: 100, current: 70, campaign_id: 2}
+    { id:"Alimentos não perecíveis"},
+    { id:"Auxilio médico"},
+    { id:"Água potável"}
 ])
 
 db.entities.insertMany([
@@ -21,6 +20,10 @@ db.entities.insertMany([
     { id:1, name: "ONG Anjo Amigo", Location: (10,30), Description: "Arrecadamos comida"},
     { id:2, name: "Casa Voluntária", Location:(20,20), Description: "Voluntario para centralizar recursos"}
 ])
-
-
-
+db.entity_campaign.insertMany([
+  {entity_id: 0, campaign_id: 0, needs: [["Alimentos não perecíveis",30,300],["Auxilio médico",0,100],["Água potável",24,400]]},
+  {entity_id: 0, campaign_id: 1, needs: [["Alimentos não perecíveis",31,70]]},
+  {entity_id: 0, campaign_id: 2, needs: [["Água potável",60,320]]},
+  {entity_id: 1, campaign_id: 2, needs: [["Alimentos não perecíveis",17,35],["Auxilio médico",23,40]]},
+  {entity_id: 2, campaign_id: 0, needs: [["Auxilio médico",5,15],["Água potável",69,100]]},
+])
