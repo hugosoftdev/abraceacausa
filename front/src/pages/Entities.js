@@ -32,6 +32,12 @@ const styles = theme => ({
   },
   campaignNeedIcon: {
     width: '90%',
+  },
+  needs: {
+    paddingTop: theme.spacing(2),
+  },
+  entityList: {
+    paddingTop: theme.spacing(3),
   }
 });
 
@@ -82,7 +88,7 @@ class Entities extends React.Component {
       <Grid container justify="space-between" alignItems="center" className={classes.campaignContainer}>
         <Grid item>
           <Typography className={classes.campaignTitle} variant="h6">{campaign.name}</Typography>
-          <Typography variant="subtitle2">{campaign.Location[2]} - {campaign.date || '21/07/2019'}</Typography>
+          <Typography variant="subtitle2">{campaign.Location[2]} - {campaign.startDate || '21/07/2019'}</Typography>
         </Grid>
         <Grid item>
           <Icon className={classes[`gravity${campaign.gravity}`]} fontSize='large'>
@@ -91,12 +97,13 @@ class Entities extends React.Component {
         </Grid>
       </Grid>
 
-      <GridList cellHeight={'auto'} cols={3}>
+      <GridList className={classes.needs} cellHeight={'auto'} cols={3}>
         {Object.keys(this.possibleNeeds).map(need => (
           this.possibleNeeds[need].needed > 0 &&
           <GridListTile className={classes.campaignNeed}>
             <div>
               <img className={classes.campaignNeedIcon} src={this.possibleNeeds[need].icon} alt="need" />
+              <Typography>{need}</Typography>
               <Typography>{(this.possibleNeeds[need].needed/this.possibleNeeds[need].available).toFixed(2)}{'%'}</Typography>
             </div>
           </GridListTile>
@@ -111,9 +118,9 @@ class Entities extends React.Component {
         <Grid item>
           <Typography variant="h6">{entity.name || 'Nome da Entidade'}</Typography>
           <div className={classes.entityContact}>
-            <Typography variant="body1">{entity.address}</Typography>
+            <Typography variant="body1">{entity.Address}</Typography>
             <br />
-            <Typography variant="body1">{entity.phone}</Typography>
+            <Typography variant="body1">{entity.Phone}</Typography>
           </div>
         </Grid>
         <Grid item>
@@ -127,13 +134,15 @@ class Entities extends React.Component {
     const { classes } = this.props;
     const { campaign } = this.state;
 
+    console.log(campaign)
+
     return (this.state.campaign &&
       <>
         <Header title="Visualizar Campanha" />
         <div className={classes.container}>
           <this.Campaign classes={classes} campaign={campaign} />
-          <Typography variant="h5">Entidades mais próximas</Typography>
           <div className={classes.entityList}>
+            <Typography variant="h5">Entidades mais próximas</Typography>
             {campaign.entities.map(entity => (
               <this.Entity classes={classes} entity={entity} />
             ))}

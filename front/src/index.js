@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Home, Campaigns, Entities } from './pages';
+import { Campaigns, Entities } from './pages';
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { ThemeProvider } from '@material-ui/styles';
@@ -15,9 +15,9 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Router>
-      <Route path="/" component={Home} />
+      <Route path="/" exact component={Campaigns} />
       <Route path="/campaigns" component={Campaigns} />
-      <Route path="/campaign/:id" component={Entities} />
+      <Route path="/entities/:id" component={Entities} />
     </Router>
   </ThemeProvider>,
   document.getElementById('root'));
