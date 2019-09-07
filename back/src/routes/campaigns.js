@@ -12,8 +12,9 @@ router.get('/', (req, res) => {
     .catch(err => console.log(err));
 });
 
-router.get('/entities', (req, res) => {
-    const campaign_id = req.body['campaign_id'];
+router.get('/:id', (req, res) => {
+    let campaign_id = parseInt(req.params.id);
+    console.log(campaign_id);
     const db = connection.db("test");
     db.collection("campaigns").findOne({id:campaign_id})
     .then(campaign => {

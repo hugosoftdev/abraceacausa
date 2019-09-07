@@ -81,7 +81,7 @@ class Campaigns extends React.Component {
 
   Campaign = ({classes, campaign}) => (
     <>
-    <Link className={classes.campaignLink} to={`/entities/${campaign.id}`}>
+    <Link className={classes.campaignLink} to={`/campaign/${campaign.id}`}>
       <Grid container justify="space-between" alignItems="center" className={classes.campaignContainer}>
         <Grid item>
           <Typography className={classes.campaignTitle} variant="h6">{campaign.name}</Typography>
@@ -107,7 +107,7 @@ class Campaigns extends React.Component {
       <>
         <this.Header classes={classes} />
         <div className={classes.filterContainer}>
-          <Typography variant="subtitle2">Filtrar por</Typography>
+          <Typography variant="subtitle2">Mostrar por</Typography>
           <Select
             className={classes.filter}
             inputProps={{

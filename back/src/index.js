@@ -31,8 +31,8 @@ app.use('/users', routes.user);
 app.use('/messages', routes.message);
 app.use('/campaigns', routes.campaigns);
 
-// Start
-
-app.listen(process.env.PORT, () =>
-  console.log(`Example app listening on port ${process.env.PORT}!`),
+//Start
+const port = 5000;
+app.listen(port, () =>
+  console.log(`Example app listening on port ${port}!`),
 );
