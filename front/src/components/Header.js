@@ -1,10 +1,33 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
+import {
+  AppBar,
+  Typography,
+  Toolbar,
+  Icon,
+} from '@material-ui/core';
 
-import logo from '../assets/logo.svg';
+import Logo from '../components/IconWithNavigation';
 
-const Header = () => (
-  <AppBar />
-)
+import { withStyles } from '@material-ui/core/styles';
 
-export default Header;
+const styles = theme => ({
+  headerContainer: {
+    padding: 0,
+    paddingRight: theme.spacing(3),
+    color: 'white',
+  },
+  headerTitle: {
+    flexGrow: 1,
+  },
+})
+
+const Header = ({ classes, title }) => (
+  <AppBar position="static" color="primary">
+    <Toolbar className={classes.headerContainer}>
+      <Logo />
+      <Typography className={classes.headerTitle} variant="h5">{title}</Typography>
+      <Icon>search</Icon>
+    </Toolbar>
+  </AppBar>
+);
+export default withStyles(styles)(Header);

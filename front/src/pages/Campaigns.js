@@ -1,20 +1,17 @@
 import React from 'react';
 
 import {
-  AppBar,
   Typography,
-  Toolbar,
   Icon,
   Select,
   MenuItem,
   Divider,
   Grid,
-  Button,
 } from '@material-ui/core';
 
-import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
-import Logo from '../components/IconWithNavigation';
+import { Link } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 import { getCampaigns } from '../connection';
@@ -69,32 +66,23 @@ class Campaigns extends React.Component {
     .then(campaigns => this.setState({campaigns}));
   }
 
-  Header = ({classes}) => (
-    <AppBar position="static" color="primary">
-      <Toolbar className={classes.headerContainer}>
-        <Logo />
-        <Typography className={classes.headerTitle} variant="h5">Buscar Campanhas</Typography>
-        <Icon>search</Icon>
-      </Toolbar>
-    </AppBar>
-  );
 
   Campaign = ({classes, campaign}) => (
     <>
-    <Link className={classes.campaignLink} to={`/entities/${campaign.id}`}>
-      <Grid container justify="space-between" alignItems="center" className={classes.campaignContainer}>
-        <Grid item>
-          <Typography className={classes.campaignTitle} variant="h6">{campaign.name}</Typography>
-          <Typography variant="subtitle2">{campaign.Location[2]} - {campaign.date || '21/07/2019'}</Typography>
+      <Link className={classes.campaignLink} to={`/entities/${campaign.id}`}>
+        <Grid container justify="space-between" alignItems="center" className={classes.campaignContainer}>
+          <Grid item>
+            <Typography className={classes.campaignTitle} variant="h6">{campaign.name}</Typography>
+            <Typography variant="subtitle2">{campaign.Location[2]} - {campaign.date || '21/07/2019'}</Typography>
+          </Grid>
+          <Grid item>
+            <Icon className={classes[`gravity${campaign.gravity}`]} fontSize='large'>
+              warning
+            </Icon>
+          </Grid>
         </Grid>
-        <Grid item>
-          <Icon className={classes[`gravity${campaign.gravity}`]} fontSize='large'>
-            warning
-          </Icon>
-        </Grid>
-      </Grid>
-    </Link>
-    <Divider />
+      </Link>
+      <Divider />
     </>
   );
 
@@ -105,7 +93,7 @@ class Campaigns extends React.Component {
 
     return (
       <>
-        <this.Header classes={classes} />
+        <Header title="Buscar Campanhas" />
         <div className={classes.filterContainer}>
           <Typography variant="subtitle2">Filtrar por</Typography>
           <Select
