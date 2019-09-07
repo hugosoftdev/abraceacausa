@@ -95,7 +95,7 @@ class Campaigns extends React.Component {
       <>
         <Header title="Buscar Campanhas" />
         <div className={classes.filterContainer}>
-          <Typography variant="subtitle2">Filtrar por</Typography>
+          <Typography variant="subtitle2">Mostrar por</Typography>
           <Select
             className={classes.filter}
             inputProps={{

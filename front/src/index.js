@@ -17,7 +17,7 @@ ReactDOM.render(
     <Router>
       <Route path="/" component={Home} />
       <Route path="/campaigns" component={Campaigns} />
-      <Route path="/entities/:id" component={Entities} />
+      <Route path="/campaign/:id" component={Entities} />
     </Router>
   </ThemeProvider>,
   document.getElementById('root'));

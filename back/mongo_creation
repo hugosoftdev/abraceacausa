@@ -3,10 +3,11 @@ db.createCollection("campaigns");
 db.createCollection("needs")
 db.createCollection("entities")
 db.createCollection("entity_campaign")
+
 db.campaigns.insertMany([
-   { name: "Brumadinho", Description: "Desastre ambiental ...", Location: (20.1515,44.2011), gravity: 10, id: 0 },
-   { name: "Inundamento Tiete", Description: "Rio Tiete subiu o nivel e deixou centenas de casas alagadas", Location: (-23,4983,-46,3347), gravity: 6, id:1 },
-   { name: "Paraisópolis Inverno", Description: "Arrecadar roupas para moradores", Location: (23.6146,46.7263), gravity: 3, id: 2 }
+   { name: "Brumadinho", Description: "Desastre ambiental ...", Location: [20.1515,44.2011, "Brumadinho"], gravity: 1, id: 0, startDate:"04/08/2019"},
+   { name: "Inundamento Tiete", Description: "Rio Tiete subiu o nivel e deixou centenas de casas alagadas", Location: [-23.4983,-46.3347, "Sao Paulo"], gravity: 2, id:1 , startDate:"25/07/2019"},
+   { name: "Paraisópolis Inverno", Description: "Arrecadar roupas para moradores", Location: [23.6146,46.7263, "Paraisópolis"], gravity: 3, id: 2, startDate:"12/06/2019" }
 ])
 
 db.needs.insertMany([
@@ -16,10 +17,11 @@ db.needs.insertMany([
 ])
 
 db.entities.insertMany([
-    { id:0, name: "Casa De Doações", Location: (50,50), Description: "Gosto de ajudar pessoas, me entreguem o que o coração mandar"},
-    { id:1, name: "ONG Anjo Amigo", Location: (10,30), Description: "Arrecadamos comida"},
-    { id:2, name: "Casa Voluntária", Location:(20,20), Description: "Voluntario para centralizar recursos"}
+    { id:0, name: "Casa De Doações", Address:"Rua Leopoldo Couto Magalhães Júnior 700 - Itaim Bibi; 04538-080, São Paulo - SP", Phone:"(11) 4900-5715", Location: (50,50), Description: "Gosto de ajudar pessoas, me entreguem o que o coração mandar"},
+    { id:1, name: "ONG Anjo Amigo", Address:"Rua Santa Justina 577 - Vila Olímpia; 04545-042, São Paulo - SP", Phone:" (11) 99137-2212", Location: (10,30), Description: "Arrecadamos comida"},
+    { id:2, name: "Casa Voluntária", Address:"Rua Cônego Roque Viggiano 44 - Itaim Bibi; 04532-030, São Paulo - SP", Phone:"(11) 3887-9369", Location:(20,20), Description: "Voluntario para centralizar recursos"}
 ])
+
 db.entity_campaign.insertMany([
   {entity_id: 0, campaign_id: 0, needs: [["Alimentos não perecíveis",30,300],["Auxilio médico",0,100],["Água potável",24,400]]},
   {entity_id: 0, campaign_id: 1, needs: [["Alimentos não perecíveis",31,70]]},
