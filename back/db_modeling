@@ -11,6 +11,7 @@ needs:
 
 _id:
 name:
+type:
 desired:
 current:
 campaign_id:

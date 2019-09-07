@@ -1,5 +1,6 @@
 use abraceacausa;
 db.createCollection("campaigns");
+db.createCollection("campaigns_needs");
 db.createCollection("needs")
 db.createCollection("entities")
 db.createCollection("entity_campaign")
@@ -10,9 +11,9 @@ db.campaigns.insertMany([
 ])
 
 db.needs.insertMany([
-    { id:0, name: "Arroz", tipo: "Perecível", Desired: 400, current: 20, campaign_id: 0},
-    { id:1, name: "Coberta", tipo: "Não Perecível", Desired: 10, current: 2, campaign_id: 1},
-    { id:2, name: "Coberta", tipo: "Não Perecível", Desired: 100, current: 70, campaign_id: 2}
+    { id:0, name: "Arroz", type: "Perecível", Desired: 400, current: 20, campaign_id: 0},
+    { id:1, name: "Coberta", type: "Não Perecível", Desired: 10, current: 2, campaign_id: 1},
+    { id:2, name: "Coberta", type: "Não Perecível", Desired: 100, current: 70, campaign_id: 2}
 ])
 
 db.entities.insertMany([
@@ -20,3 +21,6 @@ db.entities.insertMany([
     { id:1, name: "ONG Anjo Amigo", Location: (10,30), Description: "Arrecadamos comida"},
     { id:2, name: "Casa Voluntária", Location:(20,20), Description: "Voluntario para centralizar recursos"}
 ])
+
+
+
