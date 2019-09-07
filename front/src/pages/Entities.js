@@ -45,6 +45,7 @@ class Entities extends React.Component {
   state = {
     campaign: null,
     needs: {},
+    selectedNeed: '',
   }
 
   possibleNeeds = {
@@ -58,7 +59,7 @@ class Entities extends React.Component {
       needed: 0,
       icon: water,
     },
-    "Auxílio médico": {
+    "Auxilio médico": {
       available: 0,
       needed: 0,
       icon: health,
@@ -75,6 +76,7 @@ class Entities extends React.Component {
     .then(campaign => {
       campaign.entities.forEach(entity => {
         entity.needs.forEach(need => {
+          console.log(need[0])
           this.possibleNeeds[need[0]].available += need[1];
           this.possibleNeeds[need[0]].needed += need[2];
         })
@@ -102,7 +104,7 @@ class Entities extends React.Component {
           this.possibleNeeds[need].needed > 0 &&
           <GridListTile className={classes.campaignNeed}>
             <div>
-              <img className={classes.campaignNeedIcon} src={this.possibleNeeds[need].icon} alt="need" />
+              <img onClick={() => this.setState({selectedNeed: (this.state.selectedNeed !== need) ? need : ''})} className={classes.campaignNeedIcon} src={this.possibleNeeds[need].icon} alt="need" />
               <Typography>{need}</Typography>
               <Typography>{(this.possibleNeeds[need].needed/this.possibleNeeds[need].available).toFixed(2)}{'%'}</Typography>
             </div>
@@ -112,7 +114,7 @@ class Entities extends React.Component {
     </>
   );
 
-  Entity = ({classes, entity}) => (
+  Entity = ({classes, entity}) => ( (this.state.selectedNeed === '' || entity.needs.filter(need => need.includes(this.state.selectedNeed)).length > 0) &&
     <div>
       <Grid container justify="space-between" alignItems="center" >
         <Grid item>

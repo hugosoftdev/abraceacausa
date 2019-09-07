@@ -88,16 +88,6 @@ class Campaigns extends React.Component {
     }
   }
 
-  Header = ({classes}) => (
-    <AppBar position="static" color="primary">
-      <Toolbar className={classes.headerContainer}>
-        <Logo />
-        <Typography className={classes.headerTitle} variant="h5">Buscar Campanhas</Typography>
-        <Icon>search</Icon>
-      </Toolbar>
-    </AppBar>
-  );
-
   Campaign = ({classes, campaign}) => (
     <>
       <Link className={classes.campaignLink} to={`/entities/${campaign.id}`}>
