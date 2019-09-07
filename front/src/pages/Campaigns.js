@@ -15,7 +15,7 @@ import {
 import { Link } from 'react-router-dom';
 
 import Logo from '../components/IconWithNavigation';
-
+import {GetGeoDistance} from '../helpers/distance';
 import { withStyles } from '@material-ui/core/styles';
 import { getCampaigns } from '../connection';
 
@@ -69,6 +69,26 @@ class Campaigns extends React.Component {
     .then(campaigns => this.setState({campaigns}));
   }
 
+  changeFilter(event) {
+    this.setState({selectedFilter: event.target.value});
+    var campaigns = this.state.campaigns;
+    if(event.target.value == 2) {
+      campaigns = campaigns.sort((a, b) => (a.gravity < b.gravity) ? 1 : -1);
+      this.setState({campaigns});
+    } else if(event.target.value == 1) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) =>{
+          var latitude = position.coords.latitude;
+          var longitude = position.coords.longitude;
+          var teste = campaigns.sort((a, b) => (GetGeoDistance(a.Location[0], a.Location[1], latitude, longitude) > GetGeoDistance(b.Location[0], b.Location[1], latitude, longitude)) ? 1 : -1);
+          this.setState({campaigns: teste});
+        });
+      } else {
+        console.log("Geolocation is not supported by this browser.");
+      }
+    }
+  }
+
   Header = ({classes}) => (
     <AppBar position="static" color="primary">
       <Toolbar className={classes.headerContainer}>
@@ -102,7 +122,6 @@ class Campaigns extends React.Component {
 
   render() {
     const { classes } = this.props;
-
     return (
       <>
         <this.Header classes={classes} />
@@ -114,7 +133,7 @@ class Campaigns extends React.Component {
               name: 'filter'
             }}
             value={this.state.selectedFilter}
-            onChange={(event) => this.setState({selectedFilter: event.target.value})}
+            onChange={(event) => this.changeFilter(event)}
           >
             {this.filters.map((filter, index) => (
               <MenuItem key={index} value={index}>{filter}</MenuItem>

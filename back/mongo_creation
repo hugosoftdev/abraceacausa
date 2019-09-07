@@ -5,9 +5,9 @@ db.createCollection("entities")
 db.createCollection("entity_campaign")
 
 db.campaigns.insertMany([
-   { name: "Brumadinho", Description: "Desastre ambiental ...", Location: [20.1515,44.2011, "Brumadinho"], gravity: 1, id: 0, startDate:"04/08/2019"},
+   { name: "Brumadinho", Description: "Desastre ambiental ...", Location: [-20.1515,-44.2011, "Brumadinho"], gravity: 3, id: 0, startDate:"04/08/2019"},
    { name: "Inundamento Tiete", Description: "Rio Tiete subiu o nivel e deixou centenas de casas alagadas", Location: [-23.4983,-46.3347, "Sao Paulo"], gravity: 2, id:1 , startDate:"25/07/2019"},
-   { name: "Paraisópolis Inverno", Description: "Arrecadar roupas para moradores", Location: [23.6146,46.7263, "Paraisópolis"], gravity: 3, id: 2, startDate:"12/06/2019" }
+   { name: "Palmas Inverno", Description: "Arrecadar roupas para moradores", Location: [-10.2491,-48.3243, "Palmas"], gravity: 1, id: 2, startDate:"12/06/2019" }
 ])
 
 db.needs.insertMany([
